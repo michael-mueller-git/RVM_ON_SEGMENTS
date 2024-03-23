@@ -6,9 +6,9 @@ if "%~1" == "" (
 )
 
 set input_folder=%~1
-set output_file=output_combined.mp4
+set output_file=COMPOSITE_SEGMENTS_COMBINED.mp4
 
-ffmpeg -f concat -safe 0 -i "%input_folder%\file_list.txt" -c copy "%output_file%"
+ffmpeg -f concat -safe 0 -i "%input_folder%\COMPOSITE\file_list.txt" -c copy "%output_file%"
 
 echo Segmented videos have been combined into "%output_file%".
 pause
