@@ -1,8 +1,8 @@
 REQUIREMENTS:
 CUDA-Capable GPU ( which should be the most modern nvidia GPUs)
 
-### Download and extract this into a location
-
+### Download and extract this repository locally:
+<img width="861" alt="image" src="https://github.com/blewClue215/RVM_ON_SEGMENTS/assets/154766775/4e37c013-f088-45cf-9a75-b1574c703008">
 
 ### Install Miniconda:
 https://docs.anaconda.com/free/miniconda/index.html
