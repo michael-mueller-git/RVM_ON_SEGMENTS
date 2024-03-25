@@ -5,49 +5,41 @@ REQUIREMENTS:
 - Windows PC ( This guide is written for a windows user, unfortunately I don't use Linux or MacOS so i can't help you there)
 - CUDA-Capable GPU ( which should be most modern nvidia GPUs)
 
-## 1. Download and extract this repository locally:
-<img width="861" alt="image" src="https://github.com/blewClue215/RVM_ON_SEGMENTS/assets/154766775/4e37c013-f088-45cf-9a75-b1574c703008">
-
-## 2. Install Miniconda:
+## 1. Install Miniconda:
 https://docs.anaconda.com/free/miniconda/index.html
-
 After installation, verify that you've conda available:
-Open up command prompt, type in Conda, it should show this:
-<img width="838" alt="image" src="https://github.com/blewClue215/RVM_ON_SEGMENTS/assets/154766775/da52d599-e214-4d3f-8c6e-81f9742499e1">
+
+Open up command prompt, verify install by typing in ```where conda```, it should show the path to the conda exe.
+
+## 2. Clone this repository locally:
+- ```git clone https://github.com/blewClue215/RVM_ON_SEGMENTS.git```
+  
+Move into the repo root folder
+  - ```cd RVM_ON_SEGMENTS ```
 
 ## 3. Setup the python conda environment that these scripts will use!
-
 3.1 Open Command Prompt
+- Make sure (base) is not active if it is then: ```conda deactivate ```
+- ```conda create --name rvm python==3.8```
+- ```conda activate rvm```
 
-3.2. Type in and execute:
-
-`conda activate base`
-
-3.3. Once base conda is activated, type in and execute:
-
-`conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia  `
+3.2 Install Pytorch
+- nvcc --version
+- Pytorch needs to be compiled according to the response from the above command (the cuda version)
+  - Cuda 12.1: ```pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121```
+  - Cuda 11.8: ```pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118```
 
 This installs the core dependency of pytorch that this whole project requires!
 
 Subject to changes based on this:
 https://pytorch.org/get-started/locally/
 
-3.4. Once this is done go to the folder you've extracted, in the explorer bar, type in `cmd`
-<img width="946" alt="image" src="https://github.com/blewClue215/RVM_ON_SEGMENTS/assets/154766775/7e2a9211-edb1-448f-9609-24672078372e">
+3.3. Once this is done make sure you're still in the project root folder (/RVM_ON_SEGMENTS)
+  - ```pip install -r requirements_inference.txt```
 
-This brings up the command prompt with the current directory set to this (you can CD directly to it if you know how to )
-
-3.5. `Conda activate base` again
-
-3.6. Type in and execute: 
-
-`pip install -r requirements_inference.txt`
-
-This will install the rest of the dependencies needed!
 
 ## 4. Install FFMPEG:
 https://phoenixnap.com/kb/ffmpeg-windows
-
 We need this to split up the segments, and recombine them after
 
 
