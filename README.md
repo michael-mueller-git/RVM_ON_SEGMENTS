@@ -5,25 +5,31 @@ REQUIREMENTS:
 - Windows PC ( This guide is written for a windows user, unfortunately I don't use Linux or MacOS so i can't help you there)
 - CUDA-Capable GPU ( which should be most modern nvidia GPUs)
 
+
+
 ## 1. Install Miniconda:
 https://docs.anaconda.com/free/miniconda/index.html
 After installation, verify that you've conda available:
 
 Open up command prompt, verify install by typing in ```where conda```, it should show the path to the conda exe.
 
-## 2. Clone this repository locally:
+## 2. Install Git
+https://git-scm.com/download/win
+You'd need Git in order to clone the repo! 
+
+## 3. Clone this repository locally:
 - ```git clone https://github.com/blewClue215/RVM_ON_SEGMENTS.git```
   
 Move into the repo root folder
   - ```cd RVM_ON_SEGMENTS ```
 
-## 3. Setup the python conda environment that these scripts will use!
-3.1 Open Command Prompt
+## 4. Setup the python conda environment that these scripts will use!
+4.1 Open Command Prompt
 - Make sure (base) is not active if it is then: ```conda deactivate ```
 - ```conda create --name rvm python==3.8```
 - ```conda activate rvm```
 
-3.2 Install Pytorch
+4.2 Install Pytorch
 - nvcc --version
 - Pytorch needs to be compiled according to the response from the above command (the cuda version)
   - Cuda 12.1: ```pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121```
@@ -34,11 +40,11 @@ This installs the core dependency of pytorch that this whole project requires!
 Subject to changes based on this:
 https://pytorch.org/get-started/locally/
 
-3.3. Once this is done make sure you're still in the project root folder (/RVM_ON_SEGMENTS)
+4.3. Once this is done make sure you're still in the project root folder (/RVM_ON_SEGMENTS)
   - ```pip install -r requirements_inference.txt```
 
 
-## 4. Install FFMPEG:
+## 5. Install FFMPEG:
 https://phoenixnap.com/kb/ffmpeg-windows
 We need this to split up the segments, and recombine them after
 
