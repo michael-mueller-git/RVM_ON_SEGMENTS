@@ -15,6 +15,7 @@ Open up command prompt, verify install by typing in ```where conda```, it should
 
 ## 2. Install Git
 https://git-scm.com/download/win
+
 You'd need Git in order to clone the repo! 
 
 ## 3. Clone this repository locally:
