@@ -108,3 +108,54 @@ So by the end of it your folder should look something like this:
 
 Now your matted video is ready to enjoy!
 
+# Possible Problems and Solutions:
+
+## 1. Frozen images after matting is complete:
+For the frozen images it could be any number of reasons!
+
+So the steps to troubleshoot is:
+1. Go to the “segments_matted” folder and find the video segment that had frozen frames
+eg. Output_0001.mp4
+2. Go to the “segments” folder and find Output_0001.mp4, play it in your media player and see if it skips/weird pixel artifacts/purple screen
+   
+If it does, then that source segment failed to encode properly when segmenting:
+  1. Resegment the video
+  2. Copy the resegmented Output_0001.mp4 and pop it into a new folder, maybe name it “FIX_ME”
+  3. Run inference on “FIX_ME” folder
+  4. Once done, copy “FIX_ME/COMPOSITE/Output_0001.mp4” back to the “segments_matted” folder
+
+If not, try the same steps as above but without resegmenting the video.
+
+If the above does not work, the worst case scenario is to segment and reencode to H.265:
+
+1. Open up "1. DRAG AND DROP VIDEO TO SEGMENT HERE.bat"
+2. Copy and replace everything in that file with this:
+```
+@echo off
+if "%~1" == "" (
+    echo Drag and drop a video file onto this batch file to split it into 1-minute segments.
+    pause
+    exit /b
+)
+
+set /p time="Time in seconds per segment:"
+
+set input_file=%~1
+set output_folder=%~dpn1_segments
+
+mkdir "%output_folder%"
+
+ffmpeg -i "%input_file%" -c:v libx265 -crf 18 -preset medium -c:a aac -b:a 128k -f segment -segment_time "%time%" -reset_timestamps 1 "%output_folder%\output_%%03d.mp4"
+
+cd "%output_folder%"
+(for %%i in (*.mp4) do @echo file '%%i') > file_list.txt
+
+echo Video has been split into 1-minute segments and reencoded to H.265 with minimal loss.
+pause
+ ```
+3. Save
+4. Drag and drop video file on this.
+
+WARNING: THIS WILL TAKE A LOT LONGER TO SEGMENT THE VIDEO BUT SHOULD MAKE IT WORK!
+
+
