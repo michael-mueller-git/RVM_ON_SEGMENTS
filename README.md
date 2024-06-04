@@ -5,7 +5,8 @@ REQUIREMENTS:
 - Windows PC ( This guide is written for a windows user, unfortunately I don't use Linux or MacOS so i can't help you there)
 - CUDA-Capable GPU ( which should be most modern nvidia GPUs)
 
-
+## 0. Install CUDA Toolkit!
+https://developer.nvidia.com/cuda-toolkit
 
 ## 1. Install Miniconda:
 https://docs.anaconda.com/free/miniconda/index.html
