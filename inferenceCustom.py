@@ -31,7 +31,6 @@ model.load_state_dict(torch.load('rvm_mobilenetv3.pth'))
 # Get all mp4 files in the folder
 mp4_files = glob.glob(args.input_folder + '/*.mp4')
 json_file_path = f'{args.output_folder}/processed.json'
-file_list = f'{args.input_folder}/file_list.txt'
 
 processDict = {}
 
@@ -42,7 +41,6 @@ if os.path.exists(json_file_path):
 
 compFolderPath = f"{args.output_folder}/COMPOSITE"
 ensure_folder_exists(compFolderPath)
-shutil.copy(file_list, compFolderPath)
 
 for mp4_file in mp4_files:
     filename = mp4_file.split("\\")[-1]
