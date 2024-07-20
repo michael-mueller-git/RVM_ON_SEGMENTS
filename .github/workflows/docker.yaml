@@ -11,7 +11,7 @@ on:
     - reopened
 
 env:
-  REGISTRY_IMAGE: ghcr.io/michael-mueller-git/RVM_ON_SEGMENTS
+  REGISTRY_IMAGE: ghcr.io/michael-mueller-git/rvm-on-segments
 
 jobs:
   build:
