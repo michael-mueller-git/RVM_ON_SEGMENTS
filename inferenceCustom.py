@@ -9,6 +9,7 @@ import argparse
 import glob
 import json
 import shutil
+import traceback
 from tqdm.auto import tqdm
 
 
@@ -76,6 +77,7 @@ for mp4_file in mp4_files:
         writer_com.close()
     except Exception as e:
         print(e)
+        traceback.print_exc()
         print(f"{filename} failed, skipping")
         continue
 
