@@ -1,10 +1,6 @@
 # Cheat Sheet
 
-## 1. Generate Alpha Video
-
-Use `main.py` to generate alpha video.
-
-## 2. Converting equirectangular VR footage into Fisheye
+## 1. Converting equirectangular VR footage into Fisheye
 
 ```sh
 ffmpeg -i input.mp4 -filter_complex "[0:v]split=2[left][right]; [left]crop=3630:3630:0:0[left_crop]; [right]crop=3630:3630:3630:0[right_crop]; [left_crop]v360=hequirect:fisheye:iv_fov=180:ih_fov=180:v_fov=180:h_fov=180[leftfisheye]; [right_crop]v360=hequirect:fisheye:iv_fov=180:ih_fov=180:v_fov=180:h_fov=180[rightfisheye]; [leftfisheye][rightfisheye]hstack[stacked]; [stacked]scale=7260:3630[v]" -map '[v]' -c:a copy -crf 15 output_fisheye_video.mp4
@@ -16,7 +12,15 @@ or without resize:
 ffmpeg -i input.mp4 -filter_complex "[0:v]split=2[left][right]; [left]crop=3630:3630:0:0[left_crop]; [right]crop=3630:3630:3630:0[right_crop]; [left_crop]v360=hequirect:fisheye:iv_fov=180:ih_fov=180:v_fov=180:h_fov=180[leftfisheye]; [right_crop]v360=hequirect:fisheye:iv_fov=180:ih_fov=180:v_fov=180:h_fov=180[rightfisheye]; [leftfisheye][rightfisheye]hstack[v]" -map '[v]' -c:a copy -crf 15 output_fisheye_video.mp4
 ```
 
-Note: You can use the same comand to convert the alpha channel video to an fisheye format.
+extract single eye view:
+
+```sh
+ffmpeg -i output_fisheye_video.mp4 -vf "crop=iw/2:ih:0:0,scale=trunc(ih/4)*2:trunc(ih/2)*2" -c:a copy output_left.mp4
+```
+
+## 2. Generate Alpha Video
+
+Use `main.py` to generate alpha video.
 
 ## 3. Merge Fisheye with Alpha
 
